@@ -1,5 +1,6 @@
 CREATE TABLE accounts (
   id UUID NOT NULL DEFAULT gen_random_uuid(),
+  name VARCHAR(30) NOT NULL,
   balance NUMERIC NOT NULL DEFAULT 0,
   created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
   updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
@@ -8,8 +9,8 @@ CREATE TABLE accounts (
 
 CREATE TABLE transactions (
   id SERIAL NOT NULL,
-  receiver UUID NOT NULL,
-  sender UUID NOT NULL,
+  from UUID NOT NULL,
+  to UUID NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (id)
 );
