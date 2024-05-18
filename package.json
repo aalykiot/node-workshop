@@ -1,13 +1,14 @@
 {
   "name": "node-transactions-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple transactions app in Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node app.ts",
-    "dev": "nodemon --exec 'ts-node src/app.ts' --watch './src/**' --ext 'ts'",
+    "start": "ts-node index.ts",
+    "dev": "nodemon --exec 'ts-node src/index.ts' --watch './src/**' --ext 'ts'",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "db:init": "./scripts/db-init.sh"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,10 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
+    "helmet": "^7.1.0",
+    "http-status": "^1.7.4",
     "morgan": "^1.10.0",
+    "pg": "^8.11.5",
     "pino": "^9.1.0",
     "pino-pretty": "^11.0.0"
   },
@@ -25,6 +29,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
+    "@types/pg": "^8.11.6",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
     "eslint": "^8.56.0",
