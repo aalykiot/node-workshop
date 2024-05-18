@@ -9,6 +9,7 @@ const getTransactionLogs = async (): Promise<Transaction[]> => {
   const client = await getClient();
   const result = await client.query(sql);
 
+  client.release();
   return camelcaseKeys(result.rows);
 };
 
