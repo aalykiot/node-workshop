@@ -4,10 +4,10 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import httpStatus from 'http-status';
+import accountController from './controllers/account';
+import transactionController from './controllers/transaction';
 import { ApiError } from './utils/errors';
 import { handleErrors } from './middlewares/errors';
-import accountController from './controllers/account.controller';
-import transactionController from './controllers/transaction.controller';
 
 const app = express();
 

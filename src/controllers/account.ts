@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import httpStatus from 'http-status';
 import type { Request, Response } from 'express';
-import accountRepo from '../repositories/account.repo';
+import accountRepo from '../repositories/account';
 import { ApiError } from '../utils/errors';
 
 const getAccounts = async (_req: Request, res: Response) => {

@@ -1,8 +1,8 @@
 import httpStatus from 'http-status';
 import type { Request, Response } from 'express';
-import accountRepo from '../repositories/account.repo';
-import transactionRepo from '../repositories/transaction.repo';
-import { executeTransaction } from '../repositories/common';
+import accountRepo from '../repositories/account';
+import transactionRepo from '../repositories/transaction';
+import { executeTransaction } from '../repositories';
 import { ApiError } from '../utils/errors';
 
 const getTransactions = async (req: Request, res: Response) => {
