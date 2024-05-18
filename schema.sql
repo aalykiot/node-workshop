@@ -9,13 +9,14 @@ CREATE TABLE accounts (
 
 CREATE TABLE transactions (
   id SERIAL NOT NULL,
-  from UUID NOT NULL,
-  to UUID NOT NULL,
+  sender UUID NOT NULL,
+  receiver UUID NOT NULL,
+  amount DOUBLE PRECISION NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (id)
 );
 
-INSERT INTO accounts (name, balance) VALUES ("Charles Carmichael", 1000.50);
-INSERT INTO accounts (name, balance) VALUES ("Don Quixote", 500.0);
-INSERT INTO accounts (name, balance) VALUES ("Star-Lord", 1000000.90);
-INSERT INTO accounts (name, balance) VALUES ("Princess Leia", 15000.0);
+INSERT INTO accounts (name, balance) VALUES ('Charles Carmichael', 1000.50);
+INSERT INTO accounts (name, balance) VALUES ('Don Quixote', 500.0);
+INSERT INTO accounts (name, balance) VALUES ('Star-Lord', 1000000.90);
+INSERT INTO accounts (name, balance) VALUES ('Princess Leia', 15000.0);
