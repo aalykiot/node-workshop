@@ -18,7 +18,7 @@ type CreateTransactionBody = {
 
 const createTransaction = async (req: Request, res: Response) => {
   const { from, to, amount } = req.body as CreateTransactionBody;
-  const result = await executeTransaction(async (client) => {
+  const transaction = await executeTransaction(async (client) => {
     // We need to lock the accounts before the transfer.
     const sender = await accountRepo.getAndLockAccount(from, client);
     const receiver = await accountRepo.getAndLockAccount(to, client);
@@ -40,7 +40,7 @@ const createTransaction = async (req: Request, res: Response) => {
     return transactionRepo.createTransactionLog({ from, to, amount }, client);
   });
 
-  res.status(httpStatus.OK).send(result);
+  res.status(httpStatus.OK).send(transaction);
 };
 
 export default {
