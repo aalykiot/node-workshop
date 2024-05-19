@@ -1,20 +1,25 @@
+-- Set the local timezone in the DB.
+ALTER DATABASE "node-workshop" SET timezone TO 'Europe/Athens';
+SELECT pg_reload_conf();
+
 -- Creates the `accounts` table.
 CREATE TABLE accounts (
   id UUID NOT NULL DEFAULT gen_random_uuid(),
-  name VARCHAR(30) NOT NULL,
+  full_name VARCHAR(30) NOT NULL,
+  email VARCHAR(30) NOT NULL,
   balance NUMERIC NOT NULL DEFAULT 0,
-  created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
-  updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 );
 
--- Creates the `transactions` table.
-CREATE TABLE transactions (
+-- Creates the `transfers` table.
+CREATE TABLE transfers (
   id SERIAL NOT NULL,
-  sender UUID NOT NULL,
-  receiver UUID NOT NULL,
+  from_account UUID NOT NULL,
+  to_account UUID NOT NULL,
   amount DOUBLE PRECISION NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 );
 
@@ -34,7 +39,8 @@ FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
 
 -- Populates the DB with some data.
-INSERT INTO accounts (name, balance) VALUES ('Charles Carmichael', 1000.50);
-INSERT INTO accounts (name, balance) VALUES ('Don Quixote', 500.0);
-INSERT INTO accounts (name, balance) VALUES ('Star-Lord', 1000000.90);
-INSERT INTO accounts (name, balance) VALUES ('Princess Leia', 15000.0);
+INSERT INTO accounts (full_name, email, balance) VALUES 
+  ('Charles Carmichael', 'charles.carmichael@gmail.com', 1000.50),
+  ('Don Quixote', 'don.quixote@hotmail.com', 500.25),
+  ('Star-Lord', 'start-lord@marvel.com', 1000000),
+  ('Princess Leia', 'princess.leia@hotmail.com', 15000);
